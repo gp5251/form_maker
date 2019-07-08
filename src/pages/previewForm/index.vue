@@ -1,0 +1,82 @@
+<style lang="less">
+	.previewForm {
+		padding-bottom: 20px;
+
+		.title{
+			text-align: center;
+			line-height: 30px;
+			font-size: 16px;
+		}
+
+		.bn{
+			padding-top: 50px;
+			text-align: center;
+
+			.submit{
+				width: 160px;
+			}
+		}
+
+		.tip{
+			text-align: center;
+			padding: 120px 0 50px;
+			font-size: 16px;
+			line-height: 32px;
+		}
+	}
+</style>
+
+<template>
+	<FormBase
+		class="previewForm"
+		:modules="modules"
+		@submit="onSubmit"
+		>
+		<template v-slot:header v-if="modules.length">
+			<h3 class="title">预览表单</h3>
+		</template>
+
+		<template v-slot:loading>
+			<h3 class="tip">没有数据</h3>
+		</template>
+
+		<template v-slot:footer v-if="modules.length">
+			<div class="bn">
+				<a-button class="submit" type="primary" @click="createForm">创建此表单</a-button>
+			</div>
+		</template>
+	</FormBase>
+</template>
+
+<script>
+	import FormBase from '@commonComponents/formBase';
+	import cloneDeep from 'lodash/cloneDeep';
+
+	export default {
+		name: "PreviewForm",
+		data() {
+			return {
+				modules: cloneDeep(this.$store.state.modules)
+			}
+		},
+		methods: {
+			onSubmit() {
+				console.log('mock submit');
+			},
+			createForm() {
+				// mock to request create form 
+				this.$store.commit('resetModules')
+				this.addForm(this.modules)
+				this.$router.replace('/formlist')
+			},
+			addForm(form) {
+				let { formList } = this.$store.state;
+				this.$store.commit('updateFormList', [...formList, form])
+			}
+		},
+		components: {
+			FormBase
+		}
+	};
+
+</script>
