@@ -77,39 +77,8 @@
 
 <script>
 	import draggable from "vuedraggable";
-	import cfDefaultsData from "@store/createForm_defaults";
+	import { list } from "@store/createForm_defaults";
 	import { fixDragBug } from "@utils";
-
-	let compNames = [
-		['lineText', 'file-text-o'], 
-		['multilineText', 'file-text-o'], 
-		['number', 'plus-square-o'], 
-		['dater', 'calendar'],
-		['radio', 'dot-circle-o'],
-		['checkbox', 'check-square-o'],
-		['select', 'list-alt'],
-		['separator', 'window-minimize'],
-		['address', 'address-book-o'],
-		['uploadImage', 'upload'],
-		['uploadFile', 'upload'],
-		['phone', 'mobile']
-	]
-
-	const list = compNames
-		.map(name => {
-			let o = {}
-			Object.keys(cfDefaultsData)
-				.some(key => {
-					if (key.toUpperCase() === name[0].toUpperCase()) {
-						let {data} = cfDefaultsData[key];
-						o.mName = key;
-						o.title = data.title;
-						o.cn = 'fa-' + name[1]
-						return true;
-					}
-				});
-			return o;
-		});
 
 	export default {
 		data() {

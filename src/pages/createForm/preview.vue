@@ -96,7 +96,7 @@
 				:is="item.name"
 				v-bind="item"
 			/>
-			<div class="fns">
+			<div class="fns" v-show="curIndex === index">
 				 <span class="copy" @click.stop="copy(index)"><span class="fa fa-copy"></span></span>
 				<span class="del" @click.stop="del(index)"><span class="fa fa-trash-o"></span></span>
 			</div>
