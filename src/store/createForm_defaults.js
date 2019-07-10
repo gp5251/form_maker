@@ -111,6 +111,7 @@ const defautsData = {
 	},
 	Address: {
 		data: {
+			...metaData,
 			title: '地址',
 			value: {
 				province: '',

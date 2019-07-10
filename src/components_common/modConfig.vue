@@ -56,7 +56,6 @@
 		methods: {
 			onChange(e) {
 				this.curModuleData.required = e.target.checked;
-				this.$forceUpdate() // 某些时候不刷新
 			}
 		}
 	};
