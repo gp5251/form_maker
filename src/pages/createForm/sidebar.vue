@@ -31,6 +31,7 @@
 			display: inline-block;
 			box-sizing: border-box;
 			background-color: #eee;
+			cursor: move;
 
 			.fa{
 				width: 15px;
@@ -65,6 +66,7 @@
 				@start="start"
 				@clone="draggingName = item.mName"
 				@end="end"
+				@click.native="addModule(item.mName)"
 			>
 				<div class="tit">
 					<span :class="['fa', item.cn]"></span>
@@ -105,6 +107,10 @@
 				this.draggingName = '';
 				// bugfix
 				fixDragBug.undo();
+			},
+			addModule(name){
+				this.$parent.curIndex += 1;
+				this.$store.commit('addModule', {index: this.$parent.curIndex, name})
 			}
 		}
 	};
