@@ -40,7 +40,7 @@
 		<h3>表单列表</h3>
 		<ul>
 			<li v-for="(item, index) in formList" :key="index" class="item" @click="$router.push(`/showForm/${index}`)">
-				id: {{index}} name: {{item.name}}
+				{{index + 1}}: {{item.name}}
 
 				<span class="del" @click.stop="del(index)"><span class="fa fa-trash-o"></span></span>
 			</li>

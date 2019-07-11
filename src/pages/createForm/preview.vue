@@ -106,13 +106,15 @@
 
 <script>
 	import draggable from "vuedraggable";
-	import { mapState, mapMutations } from "vuex";
+	import { mapMutations } from "vuex";
 	import { getIndexModules } from "@utils";
 
 	export default {
 		name: "Preview",
 		computed: {
-			...mapState(["modules"]),
+			modules() {
+				return this.$store.state.form.modules
+			},
 			curIndex: {
 				get() {
 					return this.$parent.curIndex

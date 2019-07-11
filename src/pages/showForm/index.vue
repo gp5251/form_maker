@@ -14,7 +14,7 @@
 		:modules="modules"
 		>
 		<template v-slot:header v-if="this.modules.length">
-			<h3 class="title">表单名</h3>
+			<h3 class="title">表单名：{{ form.name }}</h3>
 		</template>
 	</FormBase>
 </template>
@@ -28,7 +28,12 @@
 		props: ['id'],
 		data(){
 			return {
-				modules: cloneDeep(this.$store.state.formList[this.id] || [])
+				form: cloneDeep(this.$store.state.formList[this.id] || {})
+			}
+		},
+		computed: {
+			modules() {
+				return this.form.modules
 			}
 		},
 		methods: {

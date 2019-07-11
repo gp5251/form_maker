@@ -3,7 +3,10 @@ import defautsData from './createForm_defaults';
 
 export default {
 	state: {
-		modules: [],
+		form: {
+			name: '未命名表单',
+			modules: [],
+		},
 		formList: []
 	},
 	mutations: {
@@ -11,7 +14,7 @@ export default {
 			state.formList = list
 		},
 		addModule(state, {name, index}) {
-			let { modules } = state;
+			let { modules } = state.form;
 			if (name in defautsData) {
 				let { data = {} } = defautsData[name];
 				modules.splice(index, 0, {
@@ -21,16 +24,22 @@ export default {
 			}
 		},
 		removeModule(state, index) {
-			state.modules.splice(index, 1);
+			state.form.modules.splice(index, 1);
 		},
 		resetModules(state) {
-			state.modules = [];
+			state.form.modules = [];
+		},
+		resetForm(state) {
+			state.form = {
+				name: '未命名表单',
+				modules: []
+			}
 		},
 		updateCurModule(state, {index, data}) {
 			if (data === void 0) return;
 
-			let mData = state.modules[index];
-			state.modules.splice(index, 1, { ...mData, ...data });
+			let mData = state.form.modules[index];
+			state.form.modules.splice(index, 1, { ...mData, ...data });
 		}
 	}
 }

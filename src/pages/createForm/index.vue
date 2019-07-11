@@ -1,7 +1,14 @@
 <template>
 	<div id="formCreator">
 		<div class="banner">
-			<h3 class="title">表单制作工具</h3>
+			<h3 class="title">表单制作工具: </h3>
+
+			<a-input 
+				class="fName"
+				:style="{width: '300px'}"
+				:value="form.name" 
+				@change="form.name = $event.target.value"/>
+
 			<div class="bn">
 				<a-button :disabled="!formList.length" type="primary" @click="toFormList">表单列表</a-button>
 				<a-button :disabled="!modules.length" type="primary" @click="preview">预览表单</a-button>
@@ -24,16 +31,17 @@
 		name: "CreateForm",
 		data() {
 			return {
+				form: this.$store.state.form,
 				draggingName: '',
 				curIndex: -1
 			}
 		},
 		computed: {
 			curModuleData() {
-				return this.$store.state.modules[this.curIndex] || null;
+				return this.form.modules[this.curIndex];
 			},
 			modules() {
-				return this.$store.state.modules;
+				return this.form.modules;
 			},
 			formList() {
 				return this.$store.state.formList;
@@ -79,6 +87,15 @@
 				line-height: 50px;
 				padding-left: 5px;
 				font-size: 18px;
+			}
+
+			.fName{
+				margin-top: 10px;
+				float: left;
+				margin-left: 10px;
+				border: none;
+				border-bottom: 1px solid #ccc;
+				border-radius: 0;
 			}
 
 			.bn{

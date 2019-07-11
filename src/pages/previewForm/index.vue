@@ -33,7 +33,7 @@
 		@submit="onSubmit"
 		>
 		<template v-slot:header v-if="modules.length">
-			<h3 class="title">预览表单</h3>
+			<h3 class="title">预览表单: {{ form.name }}</h3>
 		</template>
 
 		<template v-slot:loading>
@@ -56,7 +56,12 @@
 		name: "PreviewForm",
 		data() {
 			return {
-				modules: cloneDeep(this.$store.state.modules)
+				form: cloneDeep(this.$store.state.form)
+			}
+		},
+		computed: {
+			modules() {
+				return this.form.modules
 			}
 		},
 		methods: {
@@ -65,8 +70,8 @@
 			},
 			createForm() {
 				// mock to request create form 
-				this.$store.commit('resetModules')
-				this.addForm(this.modules)
+				this.$store.commit('resetForm')
+				this.addForm(this.form)
 				this.$router.replace('/formlist')
 			},
 			addForm(form) {
