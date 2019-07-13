@@ -122,7 +122,23 @@ const defautsData = {
 			type: 0 				// 0 有详细地址 1 无详细地址
 		},
 		icon: 'address-book-o'
-	}
+	},
+	Floating: {
+		data: {
+			...metaData,
+			title: '浮动层',
+			rect: {
+				x: 0,
+				y: 0,
+				w: 100,
+				w: 100
+			},
+			fixed: false,
+			type: 0,					// 0 图片 1 文字
+			value: ''
+		},
+		icon: 'upload'
+	},
 }
 
 const compNames = [

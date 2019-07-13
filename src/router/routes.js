@@ -1,30 +1,36 @@
 import NotFound from "@pages/notFound"
-import CreateForm from "@pages/createForm"
-import PreviewForm from "@pages/previewForm"
-import ShowForm from "@pages/showForm"
-import FormList from "@pages/formList"
+import CreateAndEdit from "@pages/createAndEdit"
+import Preview from "@pages/preview"
+import Show from "@pages/show"
+import List from "@pages/list"
 
 export default [
 	{
 		path: '/', 
-		redirect: '/createForm'
+		redirect: '/create'
 	}, {
-		path: '/createForm',
-		name: 'createForm',
-		component: CreateForm
+		path: '/preview',
+		name: 'preview',
+		component: Preview
 	}, {
-		path: '/previewForm',
-		name: 'previewForm',
-		component: PreviewForm
-	}, {
-		path: '/showForm/:id',
-		name: 'showForm',
-		component: ShowForm,
+		path: '/show/:id',
+		name: 'show',
+		component: Show,
 		props: route => ({id: route.params.id})
 	}, {
-		path: '/formList',
-		name: 'formList',
-		component: FormList,
+		path: '/create',
+		name: 'create',
+		component: CreateAndEdit,
+		props: {type: 'create'}
+	}, {
+		path: '/edit/:id',
+		name: 'edit',
+		component: CreateAndEdit,
+		props: route => ({id: route.params.id, type: 'edit'})
+	}, {
+		path: '/list',
+		name: 'list',
+		component: List,
 	}, { 
 		path: '*', 
 		component: NotFound 

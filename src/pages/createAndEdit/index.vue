@@ -36,6 +36,16 @@
 				curIndex: -1
 			}
 		},
+		props: {
+			id: {
+				type: String,
+				default: ''
+			},
+			type: {
+				type: String,
+				default: 'create'
+			}
+		},
 		computed: {
 			curModuleData() {
 				return this.form.modules[this.curIndex];
@@ -50,12 +60,15 @@
 		methods: {
 			preview() {
 				this.$router.push({
-					path: '/previewForm'
+					name: 'preview',
+					params: {
+						type: this.type
+					}
 				})
 			},
 			toFormList() {
 				this.$router.push({
-					path: '/formList'
+					path: '/list'
 				})
 			}
 		},

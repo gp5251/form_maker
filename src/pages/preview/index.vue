@@ -42,7 +42,13 @@
 
 		<template v-slot:footer v-if="modules.length">
 			<div class="bn">
-				<a-button class="submit" type="primary" @click="createForm">创建此表单</a-button>
+				<a-button 
+					v-if="type === 'create'"
+					class="submit" type="primary" @click="createForm">创建此表单</a-button>
+
+				<a-button 
+					v-if="type === 'edit'"
+					class="submit" type="primary" @click="saveForm">保存此表单</a-button>
 			</div>
 		</template>
 	</FormBase>
@@ -59,9 +65,18 @@
 				form: cloneDeep(this.$store.state.form)
 			}
 		},
+		// props: {
+		// 	type: {
+		// 		type: String,
+		// 		default: 'create'
+		// 	}
+		// },
 		computed: {
 			modules() {
 				return this.form.modules
+			},
+			type() {
+				return this.$route.params.type
 			}
 		},
 		methods: {
@@ -69,15 +84,22 @@
 				console.log('mock submit');
 			},
 			createForm() {
-				// mock to request create form 
 				this.$store.commit('resetForm')
 				this.addForm(this.form)
-				this.$router.replace('/formlist')
+				this.$router.replace('/list')
+			},
+			saveForm() {
+				this.$store.commit('resetForm')
+				// this.addForm(this.form)
+				this.$router.replace('/list')
 			},
 			addForm(form) {
 				let { formList } = this.$store.state;
 				this.$store.commit('updateFormList', [...formList, form])
 			}
+		},
+		created(){
+			console.log(this.type);
 		},
 		components: {
 			FormBase

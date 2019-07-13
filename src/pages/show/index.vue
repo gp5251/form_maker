@@ -5,6 +5,15 @@
 			line-height: 30px;
 			font-size: 16px;
 		}
+
+		.bn{
+			padding-top: 50px;
+
+			.submit{
+				width: 200px;
+				letter-spacing: 5px;
+			}
+		}
 	}
 </style>
 
@@ -15,6 +24,12 @@
 		>
 		<template v-slot:header v-if="this.modules.length">
 			<h3 class="title">表单名：{{ form.name }}</h3>
+		</template>
+
+		<template v-slot:footer>
+			<div class="bn">
+				<a-button class="submit" type="primary" @click="$router.back()">返回列表</a-button>
+			</div>
 		</template>
 	</FormBase>
 </template>
