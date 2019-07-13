@@ -65,12 +65,6 @@
 				form: cloneDeep(this.$store.state.form)
 			}
 		},
-		// props: {
-		// 	type: {
-		// 		type: String,
-		// 		default: 'create'
-		// 	}
-		// },
 		computed: {
 			modules() {
 				return this.form.modules
@@ -90,16 +84,12 @@
 			},
 			saveForm() {
 				this.$store.commit('resetForm')
-				// this.addForm(this.form)
 				this.$router.replace('/list')
 			},
 			addForm(form) {
 				let { formList } = this.$store.state;
 				this.$store.commit('updateFormList', [...formList, form])
 			}
-		},
-		created(){
-			console.log(this.type);
 		},
 		components: {
 			FormBase
