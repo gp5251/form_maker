@@ -82,8 +82,10 @@
 		class="preview"
 		@update="update"
 		@add="add"
-		:group="{put: true}"
+		:group="{put}"
 		draggable=".module"
+		@dragleave.native="dragleave"
+		@dragenter.native="dragenter"
 	>
 		<div
 			class="module"
@@ -139,7 +141,10 @@
 				this.curIndex = e.newIndex;
 			},
 			add(e) {
-				this.addModule({index: e.newIndex, name: this.$parent.draggingName});
+				// this.addModule({index: e.newIndex, name: this.$parent.draggingName});
+				if (this.$parent.canPut) {
+					this.addModule({index: e.newIndex, name: this.$parent.draggingName});
+				}
 				e.item.remove();
 			},
 			edit(index) {
@@ -152,6 +157,25 @@
 			copy(index) {
 				this.curIndex = index + 1;
 				this.addModule({index: index + 1, name: this.modules[index].name});
+			},
+			dragenter(e){
+				this.$parent.canPut = true
+				console.log(true);
+			},
+			dragleave(e){
+				this.$parent.canPut = this.getClosest(e.fromElement, 'preview')
+
+				console.log(this.$parent.canPut);
+			},
+			getClosest(el, cn) {
+				while(el && el.nodeType === 1 && !el.classList.contains(cn)) {
+					el = el.parentNode;
+				}
+
+				return !! (el && el.nodeType === 1);
+			},
+			put(){
+				return this.$parent.canPut
 			}
 		}
 	};

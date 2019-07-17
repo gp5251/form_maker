@@ -33,7 +33,8 @@
 			return {
 				form: this.$store.state.form,
 				draggingName: '',
-				curIndex: -1
+				curIndex: -1,
+				canPut: true
 			}
 		},
 		props: {
