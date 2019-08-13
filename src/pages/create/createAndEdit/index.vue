@@ -60,12 +60,13 @@
 		},
 		methods: {
 			preview() {
-				this.$router.push({
-					name: 'preview',
-					params: {
-						type: this.type
-					}
-				})
+				this.$parent.showPreview = true;
+				// this.$router.push({
+				// 	name: 'preview',
+				// 	params: {
+				// 		type: this.type
+				// 	}
+				// })
 			},
 			toFormList() {
 				this.$router.push({
