@@ -24,7 +24,7 @@
 
 <script>
 	import modbase from '@mixin/modbase';
-	import moment from 'moment';
+	import moment from 'moment/src/moment';
 
 	export default {
 		name: "Dater",
